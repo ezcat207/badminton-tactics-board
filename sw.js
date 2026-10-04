@@ -1,4 +1,4 @@
-const CACHE = 'badminton-tactics-v0.27.1';
+const CACHE = 'badminton-tactics-v0.27.2';
 const FILES = ['./', 'index.html', 'android-entry.js', 'manifest.webmanifest', 'icon.svg',
   'src/i18n.js', 'src/i18n-en.js', 'src/court-rules.js', 'src/shot-model.js', 'src/footwork-model.js',
   'src/recovery-model.js', 'src/engine.js', 'src/feedback-model.js', 'src/view.js'];

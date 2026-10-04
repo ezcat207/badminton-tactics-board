@@ -1,5 +1,7 @@
 # Badminton Tactics Board · 羽毛球战术棋盘
 
+**▶ Play online / 在线试玩: https://badminton-tactics-board.vercel.app**
+
 A canvas-based badminton tactics game: read the incoming shuttle, plan your footwork, choose a shot, and manage stamina and balance. Runs fully offline in the browser (installable as a PWA). Available in **English** and **中文**.
 
 一个基于 Canvas 的羽毛球战术棋盘游戏：预判来球、规划步伐、选择击球，并管理体力与稳定度。纯前端、可离线运行（可安装为 PWA），支持 **English** 与 **中文**。
@@ -15,9 +17,9 @@ Best played in landscape on a phone, or in a desktop browser window. / 手机请
 
 ## Language / 语言
 
-- The language follows the browser language on first visit; `?lang=en` / `?lang=zh` forces one.
+- On first visit you pick 中文 or English; the choice is remembered. `?lang=en` / `?lang=zh` forces one.
 - A 中文 / EN switch is shown on the start screen. Press **L** at any time to toggle (the page reloads, so a match in progress restarts).
-- 首次访问跟随浏览器语言，可用 `?lang=en` / `?lang=zh` 强制指定；开始界面右下角有切换按钮，游戏中按 **L** 键切换（会重新加载页面，进行中的对局将重新开始）。
+- 首次访问会先选择语言并记住选择，可用 `?lang=en` / `?lang=zh` 强制指定；开始界面右下角有切换按钮，游戏中按 **L** 键切换（会重新加载页面，进行中的对局将重新开始）。
 
 ### Adding or fixing translations
 
@@ -38,5 +40,7 @@ Source strings in the code are Chinese and double as lookup keys: `$t('选择步
 The game logic was recovered from the Android package `羽毛球战术棋盘-0.27.apk` (v0.27.0), which wraps this same web app in a WebView.
 
 ## Deploy
+
+Production: https://badminton-tactics-board.vercel.app (auto-deployed from `main` via the Vercel Git integration).
 
 Static site, no build step. `vercel --prod` from this directory, or import the repo in Vercel (Framework: Other, no build command, output directory `.`).
