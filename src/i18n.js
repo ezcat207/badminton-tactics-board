@@ -1,15 +1,14 @@
 /* Minimal i18n runtime. Source strings are Chinese and double as lookup keys;
-   English lives in i18n-en.js. Switching language reloads the page. */
+   English lives in i18n-en.js. Switching language reloads the page (choice kept in localStorage and ?lang=). */
 (function (root) {
   'use strict';
   var KEY = 'badminton-strategy.lang', lang = 'zh', reverse = null, chosen = false;
-  try {
-    var saved = root.localStorage && root.localStorage.getItem(KEY);
-    var nav = (root.navigator && (root.navigator.languages && root.navigator.languages[0] || root.navigator.language)) || 'zh';
-    var query = /[?&]lang=(zh|en)\b/.exec(root.location && root.location.search || '');
-    lang = query ? query[1] : saved === 'zh' || saved === 'en' ? saved : /^zh/i.test(nav) ? 'zh' : 'en';
-    chosen = !!query || saved === 'zh' || saved === 'en';
-  } catch (ignored) {}
+  var query = null, saved = null, nav = 'zh';
+  try { query = /[?&]lang=(zh|en)\b/.exec(root.location && root.location.search || ''); } catch (ignored) {}
+  try { saved = root.localStorage && root.localStorage.getItem(KEY); } catch (ignored) {}
+  try { nav = (root.navigator && (root.navigator.languages && root.navigator.languages[0] || root.navigator.language)) || 'zh'; } catch (ignored) {}
+  lang = query ? query[1] : saved === 'zh' || saved === 'en' ? saved : /^zh/i.test(nav) ? 'zh' : 'en';
+  chosen = !!query || saved === 'zh' || saved === 'en';
   function dict() { return root.BADMINTON_I18N_EN || {}; }
   function format(text, args) { return args.length ? text.replace(/\{(\d+)\}/g, function (m, i) { return args[i] === undefined ? m : args[i]; }) : text; }
   function t(source) {
@@ -42,7 +41,10 @@
   function setLang(next) {
     if (next !== 'zh' && next !== 'en') return;
     try { root.localStorage.setItem(KEY, next); } catch (ignored) {}
-    root.location.reload();
+    // Also carry the choice in the URL so it survives when storage is unavailable
+    // (private mode, in-app browsers); the query always wins on load.
+    var url = new URL(root.location.href); url.searchParams.set('lang', next);
+    root.location.replace(url.toString());
   }
   root.$t = t; root.$zh = zh; root.$lines = lines; root.$setLang = setLang;
   root.$lang = lang; root.$langChosen = chosen;
