@@ -17,9 +17,9 @@ Best played in landscape on a phone, or in a desktop browser window. / 手机请
 
 ## Language / 语言
 
-- On first visit you pick 中文 or English; the choice is remembered. `?lang=en` / `?lang=zh` forces one.
-- A 中文 / EN switch is shown on the start screen. Press **L** at any time to toggle (the page reloads, so a match in progress restarts).
-- 首次访问会先选择语言并记住选择，可用 `?lang=en` / `?lang=zh` 强制指定；开始界面右下角有切换按钮，游戏中按 **L** 键切换（会重新加载页面，进行中的对局将重新开始）。
+- English is the default. A persistent **EN / 中文** switch sits in the top bar of every screen (press **L** on a keyboard as a shortcut). The choice is remembered; `?lang=en` / `?lang=zh` forces one.
+- Switching reloads the page, so a match in progress restarts.
+- 默认英文。每个界面顶部都有 **EN / 中文** 切换按钮（键盘按 **L** 也可切换），选择会被记住，也可用 `?lang=en` / `?lang=zh` 指定。切换语言会重新加载页面，进行中的对局会重新开始。
 
 ### Adding or fixing translations
 

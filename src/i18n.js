@@ -2,13 +2,12 @@
    English lives in i18n-en.js. Switching language reloads the page (choice kept in localStorage and ?lang=). */
 (function (root) {
   'use strict';
-  var KEY = 'badminton-strategy.lang', lang = 'zh', reverse = null, chosen = false;
-  var query = null, saved = null, nav = 'zh';
+  var KEY = 'badminton-strategy.lang', lang = 'zh', reverse = null;
+  var query = null, saved = null;
   try { query = /[?&]lang=(zh|en)\b/.exec(root.location && root.location.search || ''); } catch (ignored) {}
   try { saved = root.localStorage && root.localStorage.getItem(KEY); } catch (ignored) {}
-  try { nav = (root.navigator && (root.navigator.languages && root.navigator.languages[0] || root.navigator.language)) || 'zh'; } catch (ignored) {}
-  lang = query ? query[1] : saved === 'zh' || saved === 'en' ? saved : /^zh/i.test(nav) ? 'zh' : 'en';
-  chosen = !!query || saved === 'zh' || saved === 'en';
+  // Default is English; a ?lang= query or a saved choice overrides it.
+  lang = query ? query[1] : saved === 'zh' || saved === 'en' ? saved : 'en';
   function dict() { return root.BADMINTON_I18N_EN || {}; }
   function format(text, args) { return args.length ? text.replace(/\{(\d+)\}/g, function (m, i) { return args[i] === undefined ? m : args[i]; }) : text; }
   function t(source) {
@@ -47,7 +46,7 @@
     root.location.replace(url.toString());
   }
   root.$t = t; root.$zh = zh; root.$lines = lines; root.$setLang = setLang;
-  root.$lang = lang; root.$langChosen = chosen;
+  root.$lang = lang;
   if (root.document) {
     root.document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
     root.document.title = t('羽毛球战术棋盘');

@@ -8,7 +8,7 @@
   try { profile = JSON.parse(localStorage.getItem(storageKey) || 'null'); } catch (ignored) {}
   try { footworkHelpDismissed = localStorage.getItem(helpStorageKey) === 'true'; } catch (ignored) {}
   var match = BadmintonEngine.createMatch({ seed: 1234, profile: profile });
-  function viewport() { return { width: document.documentElement.clientWidth, height: document.documentElement.clientHeight, pixelRatio: devicePixelRatio || 1, topInset: 0, rightInset: 0, bottomInset: 0, leftInset: 0 }; }
+  function viewport() { return { width: canvas.clientWidth || document.documentElement.clientWidth, height: canvas.clientHeight || document.documentElement.clientHeight, pixelRatio: devicePixelRatio || 1, topInset: 0, rightInset: 0, bottomInset: 0, leftInset: 0 }; }
   function point(event) { var r = canvas.getBoundingClientRect(); return { x: event.clientX - r.left, y: event.clientY - r.top }; }
   function listen(name, callback) { canvas.addEventListener(name, callback); return function () { canvas.removeEventListener(name, callback); }; }
   var size = viewport();
