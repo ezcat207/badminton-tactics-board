@@ -1,0 +1,11 @@
+{
+  "name": "羽毛球战术棋盘",
+  "short_name": "战术棋盘",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "any",
+  "background_color": "#09131f",
+  "theme_color": "#09131f",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}
